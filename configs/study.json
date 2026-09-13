@@ -1,0 +1,213 @@
+{
+  "description": "Portable single-cell training configuration. Numerical settings and partition hash salt retained from the study; not the original execution protocol.",
+  "analysis_id": "eswa_time_interface_dev_screen_r5_prefreeze_20260908",
+  "datasets": {
+    "weather_jena2020": {
+      "parent_dataset": "weather",
+      "lattice": "frozen_10_minute_index",
+      "history_points": 72,
+      "horizon_points": 18,
+      "common_anchor_stride": 36,
+      "t_ref": 198,
+      "block_span": 792,
+      "history_point_missing": 0.5,
+      "mask_seed": 99173,
+      "partitions": {
+        "fit": {
+          "cap_per_stratum": 512,
+          "minimum_per_stratum": 512
+        },
+        "early_stop": {
+          "cap_per_stratum": 128,
+          "minimum_per_stratum": 128
+        },
+        "dev_score": {
+          "cap_per_stratum": 100,
+          "minimum_per_stratum": 100
+        }
+      },
+      "strata": [
+        {
+          "name": "step1_gap0",
+          "physical_step": 1,
+          "gap": 0,
+          "history_points": 72,
+          "horizon_points": 18,
+          "stride": 36,
+          "t_ref": 198
+        },
+        {
+          "name": "step1_gap18",
+          "physical_step": 1,
+          "gap": 18,
+          "history_points": 72,
+          "horizon_points": 18,
+          "stride": 36,
+          "t_ref": 198
+        },
+        {
+          "name": "step2_gap0",
+          "physical_step": 2,
+          "gap": 0,
+          "history_points": 72,
+          "horizon_points": 18,
+          "stride": 36,
+          "t_ref": 198
+        },
+        {
+          "name": "step2_gap18",
+          "physical_step": 2,
+          "gap": 18,
+          "history_points": 72,
+          "horizon_points": 18,
+          "stride": 36,
+          "t_ref": 198
+        }
+      ]
+    },
+    "ushcn": {
+      "parent_dataset": "ushcn",
+      "lattice": "frozen_irregular_month_time_rows",
+      "history_points": 12,
+      "horizon_points": 6,
+      "common_anchor_stride": 6,
+      "t_ref": 42,
+      "block_span": 168,
+      "history_point_missing": 0,
+      "mask_seed": 99173,
+      "partitions": {
+        "fit": {
+          "cap_per_stratum": 512,
+          "minimum_per_stratum": 224
+        },
+        "early_stop": {
+          "cap_per_stratum": 128,
+          "minimum_per_stratum": 32
+        },
+        "dev_score": {
+          "cap_per_stratum": 128,
+          "minimum_per_stratum": 96
+        }
+      },
+      "strata": [
+        {
+          "name": "step1_gap0",
+          "physical_step": 1,
+          "gap": 0,
+          "history_points": 12,
+          "horizon_points": 6,
+          "stride": 6,
+          "t_ref": 42
+        },
+        {
+          "name": "step1_gap6",
+          "physical_step": 1,
+          "gap": 6,
+          "history_points": 12,
+          "horizon_points": 6,
+          "stride": 6,
+          "t_ref": 42
+        },
+        {
+          "name": "step2_gap0",
+          "physical_step": 2,
+          "gap": 0,
+          "history_points": 12,
+          "horizon_points": 6,
+          "stride": 6,
+          "t_ref": 42
+        },
+        {
+          "name": "step2_gap6",
+          "physical_step": 2,
+          "gap": 6,
+          "history_points": 12,
+          "horizon_points": 6,
+          "stride": 6,
+          "t_ref": 42
+        }
+      ]
+    }
+  },
+  "model": {
+    "dim": 256,
+    "grid_size": 32,
+    "layers": 3,
+    "heads": 4,
+    "ff_dim": 1024,
+    "dropout": 0.1,
+    "train_steps": 1000,
+    "gaussian_min_scale": 0.0001
+  },
+  "training": {
+    "optimizer": "AdamW",
+    "learning_rate": 0.0001,
+    "betas": [
+      0.9,
+      0.99
+    ],
+    "weight_decay": 0.0001,
+    "gradient_clip": 1,
+    "batch_size": 32,
+    "evaluation_batch_size": 32,
+    "max_epochs": 200,
+    "patience": 15,
+    "validation_noise_seed": 314159,
+    "amp": "bfloat16_cuda_only",
+    "resume": false,
+    "retry": false
+  },
+  "evaluation": {
+    "split_role": "dev_score_once",
+    "trajectories": 100,
+    "sample_seed": 271828,
+    "ddim_steps": 50,
+    "sample_chunk": 10,
+    "x0_clip": 5,
+    "nominal_coverage": 0.95,
+    "quantile_method": "weibull",
+    "quantile_probabilities": [
+      0.025,
+      0.975
+    ],
+    "quantile_axis": 1,
+    "numpy_version": "1.26.4",
+    "primary_aggregation": "channel_macro_within_stratum_then_equal_stratum",
+    "primary_metrics": [
+      "marginal_crps",
+      "coverage_abs_error_95",
+      "interval_score_95",
+      "trajectory_energy_score",
+      "lag1_temporal_variogram_score"
+    ],
+    "secondary_aggregation": "target_weighted",
+    "energy_normalization": "euclidean_norm_divided_by_sqrt_scored_dimensions",
+    "variogram_scope": "lag1_same_channel_temporal_only",
+    "variogram_power": 0.5,
+    "mc_sensitivity": "reuse_full100_array_for_first50_last50_CRPS_and_coverage_error_stability",
+    "units": "standardized_only_in_screen_gate"
+  },
+  "seeds": [
+    2024,
+    2025,
+    2026
+  ],
+  "coordinate_arms": {
+    "LL": {
+      "embedding": "legacy",
+      "raster": "legacy"
+    },
+    "LS": {
+      "embedding": "legacy",
+      "raster": "geometry"
+    },
+    "SL": {
+      "embedding": "geometry",
+      "raster": "legacy"
+    },
+    "SS": {
+      "embedding": "geometry",
+      "raster": "geometry"
+    }
+  }
+}

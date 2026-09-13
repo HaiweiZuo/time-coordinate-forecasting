@@ -1,0 +1,42 @@
+{
+  "sources": {
+    "weather_2020a": {
+      "url": "https://www.bgc-jena.mpg.de/wetter/mpi_roof_2020a.zip",
+      "sha256": "6a0be0552a2a26a04c3b41a5281d4a55ae251d4c65ce630971a8662f43b31f9f"
+    },
+    "weather_2020b": {
+      "url": "https://www.bgc-jena.mpg.de/wetter/mpi_roof_2020b.zip",
+      "sha256": "c37eca910ee2803b17b8c587f3194bc7625abf994576c50f32538dd7cb65ac77"
+    },
+    "ushcn_processed": {
+      "url": "https://github.com/usail-hkust/t-PatchGNN/blob/00c94e7bbaf21c71b03ed84ff690ae59e37129e5/data/ushcn/processed/ushcn.pt",
+      "sha256": "06049d363c8bf7eabfe207ef76d73417a0e9b97467e1f060517f94f7eedf4d9a"
+    }
+  },
+  "original_source_sha256": {
+    "scripts/prepare_data.py": "b1af28b86dcf61b20dac4d40ca801125bed06fece043fead8b9047bb1cb7acfa",
+    "irts_data/regular.py": "513b43a7f66e4202114eecd86a0ae39595e86ce9cc995d8064e79dd127f3c3b0",
+    "irts_data/protocol.py": "ab9d39465a3f435faa85ceb251f30f77c65502cc052e4d74120d6f9393e7693b",
+    "configs/core_protocol.json": "a830e155f3d8fa3322e933bf3092baba3cdf1065b2e87771d35ccf744cbfc7ca",
+    "configs/sources.json": "d38902b71adcb94eff67899dec98910ceebcac041301a20af98f1cdea2f267ae"
+  },
+  "scope": "Portable train/validation-only extraction; not the complete historical preparation program.",
+  "weather": {
+    "archive_order": ["weather_2020a", "weather_2020b"],
+    "original_lattice_rows": 52704,
+    "channels": 21,
+    "train_fraction": 0.7,
+    "validation_fraction": 0.1,
+    "selection": "train_end=int(N*0.7); val_end=train_end+int(N*0.1); preserve full-lattice index times"
+  },
+  "ushcn": {
+    "original_records": 1114,
+    "channels": 5,
+    "entity_split_seed": 20260801,
+    "selection": "String-sort source IDs, apply numpy.random.default_rng(seed).permutation, retain first int(N*0.6) then next int(N*0.2). Preserve this shuffled order for scaler fitting and outputs.",
+    "source_note": "Already-processed five-channel benchmark derivative; not untouched NOAA observations and not rebuilt from its CSV here. Physical station/calendar mappings remain unresolved."
+  },
+  "transform": "Finite observed training entries only; float64 pooled mean and population standard deviation; scales at or below float64 epsilon set to one; float32 transform, missing entries zero, no clipping.",
+  "output": ["train.pt", "val.pt", "scaler.npz", "preparation.json"],
+  "serialization_caveat": "Tensor slices are cloned to prevent retained backing storage. Regenerated file bytes and hashes can differ with container representation, NumPy/PyTorch versions and serialization. No bit-identical or real-data rerun verification is claimed."
+}

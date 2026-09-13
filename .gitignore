@@ -1,0 +1,11 @@
+__pycache__/
+*.py[cod]
+.venv/
+data/
+checkpoints/
+runs/
+*.pt
+*.npz
+*.zip
+*.tar.gz
+.env

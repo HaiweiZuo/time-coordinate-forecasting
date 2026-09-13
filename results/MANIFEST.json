@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "files": {
+    "captions.json": {
+      "sha256": "a887ebba0407fad381ac3ac8b6e5626e35d2d0229c052925c8a05153ac8f1fdc",
+      "bytes": 1427
+    },
+    "crossed_48_aggregates.json": {
+      "sha256": "1dc03ad1fd5932f5c9c1fa5110d4bc809dc7c394a6f0cd5cb0910474487719a5",
+      "bytes": 8811157
+    },
+    "new_24_training_histories.json": {
+      "sha256": "4f5f0f3773572f1800b35f68a26775f477656e0fce2389cd547fb6bd2bccd9e0",
+      "bytes": 217859
+    },
+    "original_24_aggregates.json": {
+      "sha256": "0b5981b88dedb14177ec3738bbcb1776f10845f4ef841f8d7f84e5bd1a612a78",
+      "bytes": 518903
+    },
+    "original_scientific_contract.json": {
+      "sha256": "f3593c259a6be5dbc7288a9944bd1fa643e63132bff0431f59979e4f83f83a2a",
+      "bytes": 8193
+    },
+    "original_training_history_table.md": {
+      "sha256": "441a70b918149e5f605b5d6b80fca3e56a70d3bd4a7c5871626b879b5e1faee9",
+      "bytes": 3271
+    },
+    "README.md": {
+      "sha256": "03127907956e04eb4415777ecf9d899f830a1de412f9e7d1d46aaa27809995ae",
+      "bytes": 2507
+    },
+    "support_mask_training_summary.json": {
+      "sha256": "c05076f2bafc311d47e962cbf12147d4dc5757fc0061c5b3a7438e358e340864",
+      "bytes": 1106995
+    },
+    "temporal_24_aggregates.json": {
+      "sha256": "213e4ba0a369a0130558680043ea46837712aeeb2dd2f9845e8241cf5cfd19b7",
+      "bytes": 25131138
+    },
+    "training_ushcn__conditional_diffusion.png": {
+      "sha256": "cdbbc286623cb625dfa8e10646610a4ca6adf78fd94e0f6efdc2e621ca9ba54d",
+      "bytes": 186384
+    },
+    "training_ushcn__conditional_diffusion.svg": {
+      "sha256": "53ba51fa48e831b8cef0102f174f3c7e82e5c22d5023c12c4c364f2928f964da",
+      "bytes": 102777
+    },
+    "training_ushcn__direct_gaussian.png": {
+      "sha256": "ade6d3a26221d47c8ee0413bddbca61238992e77ef634098302aba8bd5a53238",
+      "bytes": 157308
+    },
+    "training_ushcn__direct_gaussian.svg": {
+      "sha256": "2bc3bbb67b0460c3bfe76ed9cec2c138dac4027ff4808c0c7982cf1d6fbd35a8",
+      "bytes": 84941
+    },
+    "training_weather_jena2020__conditional_diffusion.png": {
+      "sha256": "585d9fa044a01e088daaa4c9fba4eb9712a6721d40fb145c5ed2b4370455b55c",
+      "bytes": 159503
+    },
+    "training_weather_jena2020__conditional_diffusion.svg": {
+      "sha256": "1ed4f30534c3ec3796567b0d06aad2f6f45356969cda4239a274a0e4a28531a8",
+      "bytes": 133055
+    },
+    "training_weather_jena2020__direct_gaussian.png": {
+      "sha256": "dd1bdb93fded563b836403b6b3a4ba2bcbc7cdcb58efe2e6f7c7fceb388296d0",
+      "bytes": 164742
+    },
+    "training_weather_jena2020__direct_gaussian.svg": {
+      "sha256": "26794614e00364377a3ab81b188fd8a622a7d8dc3ff908e950f1cd18f16f5010",
+      "bytes": 89198
+    },
+    "verify_numerical_release.py": {
+      "sha256": "686e100859ba51c62ba373387b4893c0fe7a37e4b88d9c8d4854069a86681331",
+      "bytes": 8484
+    },
+    "verify_numerical_release_v2.py": {
+      "sha256": "5d421e303fca1921b73d32f4e802978a8324a83b75cceda9203d4989dbc8ba42",
+      "bytes": 6206
+    }
+  }
+}

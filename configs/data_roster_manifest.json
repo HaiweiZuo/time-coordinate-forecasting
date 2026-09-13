@@ -1,0 +1,293 @@
+{
+  "schema_version": 5,
+  "analysis_id": "eswa_time_interface_dev_screen_r5_prefreeze_20260908",
+  "status": "FROZEN",
+  "datasets": {
+    "weather_jena2020": {
+      "anonymous_roster_digest": {
+        "fit": "4690ff8cd7136e68fb463314c2d8ef9700f60301cdeeb8fa76123e0d733115e4",
+        "early_stop": "a29b9164dd0218a24b66d08c51fbc5b4ef1ea7d7ac25e11f35ddf576054292c4",
+        "dev_score": "b9ec0cd7864378025a7fb5f71a19c7a4158591aa0135e7b40026fb0a460b90dc"
+      },
+      "source_block_digest": {
+        "fit": "d7c89a80787fdb503477a730490f0e9f8ccb0ae0d45cab79cc893b858dbf807f",
+        "early_stop": "3305b1fe08b9e1579dd53e0a0d17afa9fb97ad28870263c0c39740144a3baefd",
+        "dev_score": "f3cc459ca786f017d03038c2f8d7671eebc1337c957e2254b1c6b7832ecde5cd"
+      },
+      "source_block_count": {
+        "fit": 39,
+        "early_stop": 8,
+        "dev_score": 7
+      },
+      "partition_counts": {
+        "fit": {
+          "step1_gap0": 512,
+          "step1_gap18": 512,
+          "step2_gap0": 512,
+          "step2_gap18": 512
+        },
+        "early_stop": {
+          "step1_gap0": 128,
+          "step1_gap18": 128,
+          "step2_gap0": 128,
+          "step2_gap18": 128
+        },
+        "dev_score": {
+          "step1_gap0": 100,
+          "step1_gap18": 100,
+          "step2_gap0": 100,
+          "step2_gap18": 100
+        }
+      },
+      "fixed_tensor_shapes": {
+        "history_points": 72,
+        "horizon_points": 18
+      },
+      "metric_denominators": {
+        "step1_gap0": {
+          "active_channel_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20
+          ],
+          "target_count": 37800,
+          "evaluated_window_count": 100,
+          "lag1_pair_count": 35700
+        },
+        "step1_gap18": {
+          "active_channel_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20
+          ],
+          "target_count": 37800,
+          "evaluated_window_count": 100,
+          "lag1_pair_count": 35700
+        },
+        "step2_gap0": {
+          "active_channel_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20
+          ],
+          "target_count": 37800,
+          "evaluated_window_count": 100,
+          "lag1_pair_count": 35700
+        },
+        "step2_gap18": {
+          "active_channel_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20
+          ],
+          "target_count": 37800,
+          "evaluated_window_count": 100,
+          "lag1_pair_count": 35700
+        },
+        "target_weighted": {
+          "active_channel_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20
+          ],
+          "target_count": 151200,
+          "evaluated_window_count": 400,
+          "lag1_pair_count": 142800
+        }
+      }
+    },
+    "ushcn": {
+      "anonymous_roster_digest": {
+        "fit": "1275cb5ac748e2b7b035ede93a3379fb48eba26187bec82dd955c4c47b894c3a",
+        "early_stop": "0ff028a8a421ebefae8473fb9934bf469e29ad359d803ccc0a63bf50e1994037",
+        "dev_score": "9ea82a959ba0879e2f289833144a6a4567c8e7d5532fe91d37cc1cbafa3fe571"
+      },
+      "source_block_digest": {
+        "fit": "b5d9034a9c66857ddfb0ea2738ef275ad91323b05788d14ba8c13f77b559a4bd",
+        "early_stop": "e47253f6b279c9f2315adf3074d5876bf81ce31f99a85484154530e4ffd7c5bb",
+        "dev_score": "c92b5d776a78f06485249363e174d6ff4c3905a16c63e6142308fea29bd500dd"
+      },
+      "source_block_count": {
+        "fit": 212,
+        "early_stop": 31,
+        "dev_score": 92
+      },
+      "partition_counts": {
+        "fit": {
+          "step1_gap0": 237,
+          "step1_gap6": 237,
+          "step2_gap0": 237,
+          "step2_gap6": 237
+        },
+        "early_stop": {
+          "step1_gap0": 37,
+          "step1_gap6": 37,
+          "step2_gap0": 37,
+          "step2_gap6": 37
+        },
+        "dev_score": {
+          "step1_gap0": 105,
+          "step1_gap6": 105,
+          "step2_gap0": 105,
+          "step2_gap6": 105
+        }
+      },
+      "fixed_tensor_shapes": {
+        "history_points": 12,
+        "horizon_points": 6
+      },
+      "metric_denominators": {
+        "step1_gap0": {
+          "active_channel_indices": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "target_count": 703,
+          "evaluated_window_count": 105,
+          "lag1_pair_count": 110
+        },
+        "step1_gap6": {
+          "active_channel_indices": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "target_count": 673,
+          "evaluated_window_count": 105,
+          "lag1_pair_count": 131
+        },
+        "step2_gap0": {
+          "active_channel_indices": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "target_count": 683,
+          "evaluated_window_count": 105,
+          "lag1_pair_count": 130
+        },
+        "step2_gap6": {
+          "active_channel_indices": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "target_count": 686,
+          "evaluated_window_count": 105,
+          "lag1_pair_count": 119
+        },
+        "target_weighted": {
+          "active_channel_indices": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "target_count": 2745,
+          "evaluated_window_count": 420,
+          "lag1_pair_count": 490
+        }
+      }
+    }
+  }
+}

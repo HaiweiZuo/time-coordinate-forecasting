@@ -1,0 +1,272 @@
+{
+  "schema_version": 5,
+  "analysis_id": "eswa_time_interface_dev_screen_r5_prefreeze_20260908",
+  "freeze_status": "FROZEN",
+  "scope": {
+    "allowed_payload_splits": [
+      "train",
+      "val"
+    ],
+    "dev_score_calls_total": 24,
+    "dev_score_may_tune_nothing": true,
+    "dev_score_source": "frozen_parent_val_payload_once",
+    "early_stop_source": "train_payload_disjoint_source_time_blocks",
+    "factors": {
+      "predictive_distribution_family": [
+        "conditional_diffusion",
+        "direct_gaussian"
+      ],
+      "time_encoding": [
+        "legacy",
+        "geometry"
+      ]
+    },
+    "fit_source": "train_payload_source_time_blocks",
+    "forbidden": [
+      "test",
+      "resume",
+      "retry",
+      "confirmatory_claim",
+      "threshold_change"
+    ],
+    "phase": "development_only_mechanism_screen",
+    "sanitized_fixed_detector_prior_used": false,
+    "seeds": [
+      2024,
+      2025,
+      2026
+    ]
+  },
+  "datasets": {
+    "ushcn": {
+      "block_span": 168,
+      "common_anchor_stride": 6,
+      "history_point_missing": 0.0,
+      "history_points": 12,
+      "horizon_points": 6,
+      "lattice": "frozen_irregular_month_time_rows",
+      "mask_seed": 99173,
+      "parent_dataset": "ushcn",
+      "partitions": {
+        "dev_score": {
+          "cap_per_stratum": 128,
+          "minimum_per_stratum": 96
+        },
+        "early_stop": {
+          "cap_per_stratum": 128,
+          "minimum_per_stratum": 32
+        },
+        "fit": {
+          "cap_per_stratum": 512,
+          "minimum_per_stratum": 224
+        }
+      },
+      "strata": [
+        {
+          "gap": 0,
+          "history_points": 12,
+          "horizon_points": 6,
+          "name": "step1_gap0",
+          "physical_step": 1,
+          "stride": 6,
+          "t_ref": 42
+        },
+        {
+          "gap": 6,
+          "history_points": 12,
+          "horizon_points": 6,
+          "name": "step1_gap6",
+          "physical_step": 1,
+          "stride": 6,
+          "t_ref": 42
+        },
+        {
+          "gap": 0,
+          "history_points": 12,
+          "horizon_points": 6,
+          "name": "step2_gap0",
+          "physical_step": 2,
+          "stride": 6,
+          "t_ref": 42
+        },
+        {
+          "gap": 6,
+          "history_points": 12,
+          "horizon_points": 6,
+          "name": "step2_gap6",
+          "physical_step": 2,
+          "stride": 6,
+          "t_ref": 42
+        }
+      ],
+      "t_ref": 42
+    },
+    "weather_jena2020": {
+      "block_span": 792,
+      "common_anchor_stride": 36,
+      "history_point_missing": 0.5,
+      "history_points": 72,
+      "horizon_points": 18,
+      "lattice": "frozen_10_minute_index",
+      "mask_seed": 99173,
+      "parent_dataset": "weather",
+      "partitions": {
+        "dev_score": {
+          "cap_per_stratum": 100,
+          "minimum_per_stratum": 100
+        },
+        "early_stop": {
+          "cap_per_stratum": 128,
+          "minimum_per_stratum": 128
+        },
+        "fit": {
+          "cap_per_stratum": 512,
+          "minimum_per_stratum": 512
+        }
+      },
+      "strata": [
+        {
+          "gap": 0,
+          "history_points": 72,
+          "horizon_points": 18,
+          "name": "step1_gap0",
+          "physical_step": 1,
+          "stride": 36,
+          "t_ref": 198
+        },
+        {
+          "gap": 18,
+          "history_points": 72,
+          "horizon_points": 18,
+          "name": "step1_gap18",
+          "physical_step": 1,
+          "stride": 36,
+          "t_ref": 198
+        },
+        {
+          "gap": 0,
+          "history_points": 72,
+          "horizon_points": 18,
+          "name": "step2_gap0",
+          "physical_step": 2,
+          "stride": 36,
+          "t_ref": 198
+        },
+        {
+          "gap": 18,
+          "history_points": 72,
+          "horizon_points": 18,
+          "name": "step2_gap18",
+          "physical_step": 2,
+          "stride": 36,
+          "t_ref": 198
+        }
+      ],
+      "t_ref": 198
+    }
+  },
+  "selection": {
+    "anchor_order": "ascending_sha256_anonymous_anchor_digest",
+    "anchor_policy": "maximum_span_common_anchor_intersection",
+    "raw_identifiers_exported": false,
+    "shared_across_strata_families_encodings_seeds": true,
+    "source_time_block_span": "4_times_dataset_T_ref",
+    "train_fold": "sha256_source_block_mod5_equal0_is_early_stop",
+    "ushcn_fixed_shape_selection": "rounded_linspace_rank_selection_within_physical_intervals",
+    "window_crosses_block": false
+  },
+  "time_encoding": {
+    "common_backbone": "SupportAwareDenoiser_for_both_levels",
+    "geometry": "shared physical lattice labels divided by fixed dataset T_ref",
+    "legacy": "history/query labels separately normalized within their own physical intervals; regular Weather reduces to fixed-rank labels",
+    "support_application": "after_interpolation_and_after_every_frequency_block",
+    "support_rasterization": "interval_grid_cells_or_nearest_cell_if_empty"
+  },
+  "model": {
+    "dim": 256,
+    "dropout": 0.1,
+    "ff_dim": 1024,
+    "gaussian_min_scale": 0.0001,
+    "grid_size": 32,
+    "heads": 4,
+    "layers": 3,
+    "train_steps": 1000
+  },
+  "training": {
+    "amp": "bfloat16_cuda_only",
+    "batch_size": 32,
+    "betas": [
+      0.9,
+      0.99
+    ],
+    "evaluation_batch_size": 32,
+    "gradient_clip": 1.0,
+    "learning_rate": 0.0001,
+    "max_epochs": 200,
+    "optimizer": "AdamW",
+    "patience": 15,
+    "resume": false,
+    "retry": false,
+    "validation_noise_seed": 314159,
+    "weight_decay": 0.0001
+  },
+  "evaluation": {
+    "ddim_steps": 50,
+    "energy_normalization": "euclidean_norm_divided_by_sqrt_scored_dimensions",
+    "mc_sensitivity": "reuse_full100_array_for_first50_last50_CRPS_and_coverage_error_stability",
+    "nominal_coverage": 0.95,
+    "numpy_version": "1.26.4",
+    "primary_aggregation": "channel_macro_within_stratum_then_equal_stratum",
+    "primary_metrics": [
+      "marginal_crps",
+      "coverage_abs_error_95",
+      "interval_score_95",
+      "trajectory_energy_score",
+      "lag1_temporal_variogram_score"
+    ],
+    "quantile_axis": 1,
+    "quantile_method": "weibull",
+    "quantile_probabilities": [
+      0.025,
+      0.975
+    ],
+    "sample_chunk": 10,
+    "sample_seed": 271828,
+    "secondary_aggregation": "target_weighted",
+    "split_role": "dev_score_once",
+    "trajectories": 100,
+    "units": "standardized_only_in_screen_gate",
+    "variogram_power": 0.5,
+    "variogram_scope": "lag1_same_channel_temporal_only",
+    "x0_clip": 5.0
+  },
+  "analysis_gate": {
+    "confirmation_diffusion_median_crps_strictly_positive": true,
+    "dataset_family_median_crps_min": -0.02,
+    "dataset_family_shared_coverage_abs_error_max": 0.03,
+    "dataset_family_shared_minus_legacy_coverage_abs_error_max": 0.01,
+    "dataset_family_stratum_median_crps_min": -0.02,
+    "dataset_median_block_crps_min": 0.05,
+    "dataset_median_energy_score_effect_min": -0.02,
+    "dataset_median_interval_score_effect_min": 0.0,
+    "dataset_median_variogram_score_effect_min": -0.02,
+    "dataset_stratum_median_crps_min": -0.02,
+    "mc_dataset_effect_span_max": 0.025,
+    "mc_dataset_family_shared_coverage_abs_error_half_difference_max": 0.01,
+    "positive_block_count_min": 5
+  },
+  "determinism": {
+    "CUBLAS_WORKSPACE_CONFIG": ":4096:8",
+    "cuda_matmul_tf32": false,
+    "cudnn_benchmark": false,
+    "cudnn_deterministic": true,
+    "cudnn_tf32": false,
+    "deterministic_algorithms": true,
+    "float32_matmul_precision": "highest",
+    "formal_torch_cuda_build_allowlist": [
+      "2.4.x+cu124@CUDA12.4",
+      "2.8.x+cu128@CUDA12.8"
+    ]
+  },
+  "scientific_interpretation": "exploratory bundled coordinate-rasterization-support interface screen only; direct Gaussian is an effect-modifier and diagnostic arm with no independent route; marginal CRPS is primary, while energy and temporal lag-1 variogram are limited joint diagnostics"
+}

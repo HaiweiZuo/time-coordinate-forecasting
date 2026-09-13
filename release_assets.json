@@ -1,0 +1,17 @@
+{
+  "release": "v1.0.0",
+  "assets": [
+    {
+      "name": "ushcn-checkpoints.zip",
+      "sha256": "a2106b1be7e1b3a4beef1e2f434ae5c1e1631cb87da5376a1d9622172e6d7c48",
+      "bytes": 547636936,
+      "checkpoints": 24
+    },
+    {
+      "name": "weather-checkpoints.zip",
+      "sha256": "db81c8fe89cf538424602c74617b7f0756642f07f25429a91c7136dffc0c70cd",
+      "bytes": 550109994,
+      "checkpoints": 24
+    }
+  ]
+}
