@@ -14,7 +14,7 @@ The study uses the five-channel processed benchmark distributed by [t-PatchGNN](
 
 This file is an already-processed derivative, not untouched NOAA observations. The public preparation utility does not reconstruct it from the benchmark CSV. The complete physical station/calendar mapping and upstream transformation history have not been established for this release.
 
-Permission to redistribute this derivative has not been verified. Readers are therefore directed to the upstream distribution and its applicable terms; the data are not bundled here. This is a licensing-verification limitation, not a claim of privacy restrictions or a prohibition on access.
+We direct readers to the upstream USHCN distribution and do not redistribute these processed files. The project's MIT license does not cover these third-party observations. Readers should follow the upstream terms applicable to their intended use.
 
 The source contains a legacy pickle representation. The utility verifies its complete pinned SHA-256 before deserializing the same open stream. A matching hash establishes file identity, not a general guarantee that pickle is safe. Use only the trusted upstream file; no unchecked-pickle option is provided.
 
@@ -35,4 +35,3 @@ The machine-readable [source specification](preprocessing/source_spec.json) also
 Prepared tensors are cloned before saving so unselected backing storage is not retained. Record identifiers are represented by standard Python integers or strings. Container representation and library versions can change serialized bytes even when numerical contents agree.
 
 Synthetic tests verified the extracted transformations against the inspected preparation code. The release was not validated by regenerating real-data payloads or retraining models. Users should check source hashes, preparation receipts, original roster digests, and their numerical outputs separately. The archived checkpoints and aggregate results provide fixed comparison artifacts.
-

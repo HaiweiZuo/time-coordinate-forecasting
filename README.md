@@ -4,6 +4,8 @@ Research materials for *Time-Coordinate Collisions and Model-Dependent Effects i
 
 The study compares separate and shared time coordinates in conditional diffusion and direct Gaussian prediction. The repository contains portable training and preprocessing code, archived numerical results, and a registry of 48 retained checkpoints. Checkpoint archives are distributed through [release v1.0.0](https://github.com/HaiweiZuo/time-coordinate-forecasting/releases/tag/v1.0.0), outside Git history.
 
+Version 1.0.1 adds MIT licensing. Model code, numerical results, and checkpoint bytes are unchanged from version 1.0.0.
+
 ## Coordinate arms
 
 The first letter specifies time-embedding coordinates. The second specifies history interpolation and support coordinates.
@@ -89,5 +91,4 @@ This release preserves the model, partitioning, and metric implementations while
 
 Prediction uses retrospective query times and realized target masks. It does not establish performance when future observation availability is unknown. Weather temporal results concern a later period at the same station. The specialized Weather 2022 inference-roster workflow is not included in the portable training interface; its retained summaries and verification scripts are included under `results/`.
 
-No general reuse license is assigned in this release. Third-party data and software remain subject to their respective terms. See [NOTICE.md](NOTICE.md).
-
+Code, published checkpoint weights, and numerical materials are provided under the [MIT License](LICENSE). Third-party observations and dependencies are excluded and retain their respective terms. See [NOTICE.md](NOTICE.md).
