@@ -258,3 +258,30 @@ second protocol was run on the compute machine.
    the first run (same seed, same training payload).
 7. Execution. Same machine, same Python environment and same service limits
    as the first run, two processes at a time on the one GPU.
+
+## 2026-11-21 07:55 (UTC+8), 2024 payload prepared, no fit of the second protocol yet
+
+### Pre-training report (second protocol, section 4)
+
+1. Protocol. Commit `2558c34`, SHA-256
+   `b833989d69d97390c8f7eebb079b2dd60aaeef4aed021826ba56819dfedfcdbb`.
+2. Preconditions. (a) Pass, see N5 item 1. (b) Pass: all 21 numeric headers
+   equal the 2020 archives. (c) Pass: the timestamps run from 2024-01-01 00:10
+   to 2025-01-01 00:00. The archive `mpi_roof_2024.zip` was downloaded at
+   2026-11-20T23:53:52Z, after the protocol and the code had been pushed:
+   2,583,427 bytes, SHA-256
+   `3ce424b9d1671ebc26c09921c7d4f9444282acb1e8a5f020d90a156287ba83aa`. It holds
+   52,704 rows, no duplicate timestamp, no absent timestamp and 23 missing
+   entries.
+3. Roster. 67 qualifying and realized anchors, 67 source blocks, no excluded
+   block, 268 windows (67 per schedule), 5 or 6 blocks in every calendar
+   month.
+4. Reader check. On the 2023 archives the single-archive reader gives the
+   same record as the reader of the first run, and the scaled payload equals
+   the Weather 2023 payload of the first run bit for bit (SHA-256
+   `52d9fb3a39e04494514a6026b2cdc0fdc6e18be21abf0783a1d2b98f422993af`).
+5. Code on the compute machine: commit `cb7fa70`. Prepared 2024 payload:
+   SHA-256 `f515c058b28e55275ac2ec150bfbbe50955c2b2056b23dad7acc5828e1d6d77d`.
+
+No value of a 2024 record was printed, plotted or summarised. Nothing failed,
+so the fits start.
