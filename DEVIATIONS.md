@@ -151,3 +151,30 @@ been scored on any confirmation roster, and no confirmation score existed.
 - All 160 fits, all rosters, metrics, baselines and reporting commitments
   stay as registered. USHCN results are reported in full whichever way they
   fall.
+
+## 2026-11-20 16:13 (UTC+8), analysis code fixed while the fits are running
+
+### N3. Analysis details fixed before any confirmation score was read
+
+`confirmation/analyze.py` was written and committed at this point. Host
+progress at that moment: fits 4/160 scores 6/240 problems 0 service_alive=True. Only file structure and counts of finished
+cells had been checked; no confirmation score value had been read, exported or
+compared.
+
+1. Contrasts. For every roster and model family: SL vs LL, LS vs LL, SS vs LL,
+   SS vs SL and SS vs LS, each as T_s = 1 - CRPS_A,s / CRPS_B,s on the
+   equal-stratum empirical CRPS. Only Weather 2023, conditional diffusion,
+   SL vs LL (H2) carries a decision.
+2. Sign test. The exact one-sided probability of at least the observed number
+   of positive seeds under no effect is reported for every contrast and is
+   descriptive outside H2.
+3. Block bootstrap. One set of 2,000 block resamples per roster
+   (`numpy.random.default_rng(20261120)`), shared by all contrasts of that
+   roster. Registered statistic: block scores averaged over seeds, then over
+   the resampled blocks within each stratum, then over the four strata, then
+   the relative effect. Sensitivity statistic: the registered metric
+   re-aggregated exactly from the per-channel sums of the resampled blocks.
+   Both intervals are reported.
+4. Fair CRPS repeats every statistic as a sensitivity analysis.
+5. If cells are missing at export, statistics use the available seeds, the
+   missing cells are listed, and H2 is reported as undetermined.

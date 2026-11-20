@@ -143,8 +143,64 @@ def check_matrix() -> None:
     print("PASS matrix: 160 registered cells in the protocol order")
 
 
+def check_analysis() -> None:
+    """Synthetic delivery files with a built-in arm effect, written with the export helpers."""
+    import tempfile
+    from pathlib import Path
+
+    from confirmation import analyze
+
+    generator = np.random.default_rng(11)
+    gain = {"LL": 1.0, "SL": 0.8, "LS": 0.9, "SS": 1.05}
+    scores, blocks, sums, reference = [], [], [], []
+    for dataset, roster in analyze.ROSTERS:
+        strata = ("a", "b", "c", "d")
+        counts = generator.integers(0, 6, size=(12, 4, 3)) + (np.arange(3) == 0)
+        base = generator.random((12, 4, 3)) + 0.5
+        for family in analyze.FAMILIES:
+            for arm in analyze.ARMS:
+                for seed in analyze.SEEDS:
+                    noise = 1 + 0.03 * generator.standard_normal((12, 4, 3))
+                    rows = [{"stratum": strata[s], "source_block_digest": f"{b:016x}" + "0" * 48, "channel_count": counts[b, s].tolist(),
+                             "empirical_crps_channel_sum": (counts[b, s] * base[b, s] * noise[b, s] * gain[arm]).tolist(),
+                             "fair_crps_channel_sum": (counts[b, s] * base[b, s] * noise[b, s] * gain[arm] * 0.98).tolist()}
+                            for b in range(12) for s in range(4)]
+                    cell = {"dataset": dataset, "roster": roster, "family": family, "arm": arm, "seed": seed}
+                    scores.extend({**cell, **row} for row in export.summary_rows(stratum_summary(rows)))
+                    block_scores, block_sums = export.block_tables(rows)
+                    blocks.extend({**cell, **row} for row in block_scores)
+                    sums.extend({**cell, **row} for row in block_sums)
+        reference.extend({"dataset": dataset, "roster": roster, "baseline": name, "stratum": "ALL", "crps_empirical": value, "crps_fair": value, "n_scored": 1}
+                         for name, value in (("climatology", 2.0), ("persistence", 1.5)))
+    with tempfile.TemporaryDirectory() as directory:
+        out = Path(directory)
+        export.write_csv(out / "confirmation_scores.csv", export.CELL_FIELDS + export.SCORE_FIELDS, scores)
+        export.write_csv(out / "confirmation_block_scores.csv", export.CELL_FIELDS + ["stratum", "source_block", "crps_empirical", "crps_fair", "n_scored", "n_windows"], blocks)
+        export.write_csv(out / "confirmation_block_channel_sums.csv.gz", export.CELL_FIELDS + ["stratum", "source_block", "channel", "count", "empirical_sum", "fair_sum"], sums, compressed=True)
+        export.write_csv(out / "baseline_scores.csv", ["dataset", "roster", "baseline"] + export.SCORE_FIELDS, reference)
+        loaded = [analyze.read_csv(out / name) for name in ("confirmation_scores.csv", "confirmation_block_scores.csv", "confirmation_block_channel_sums.csv.gz")]
+        results = analyze.analyse(*loaded, "empirical")
+        primary = {(r["roster"], r["family"], r["arm"], int(r["seed"])): float(r["crps_empirical"]) for r in loaded[0] if r["stratum"] == "ALL"}
+    assert len(results) == 3 * 2 * 5
+    for entry in results:
+        a, b = entry["contrast"].split(" vs ")
+        expected = 1 - gain[a] / gain[b]
+        assert abs(entry["median"] - expected) < 0.02 and entry["n"] == 10
+        low, high = entry["bootstrap_pooled"]["interval95"]
+        assert low <= entry["bootstrap_pooled"]["point"] <= high and abs(entry["bootstrap_registered"]["point"] - expected) < 0.03
+        mean_a = np.mean([primary[(entry["roster"], entry["family"], a, s)] for s in analyze.SEEDS])
+        mean_b = np.mean([primary[(entry["roster"], entry["family"], b, s)] for s in analyze.SEEDS])
+        assert abs(entry["bootstrap_pooled"]["point"] - (1 - mean_a / mean_b)) < 1e-9
+        assert entry["positive"] == (10 if expected > 0 else 0)
+    decision = [entry for entry in results if "decision" in entry]
+    assert len(decision) == 1 and decision[0]["decision"] == "confirmed" and decision[0]["roster"] == "weather2023"
+    assert abs(analyze.sign_test_p(9, 10) - 11 / 1024) < 1e-15 and analyze.sign_test_p(0, 10) == 1.0
+    print("PASS analysis: per-seed effects, sign test, both bootstrap statistics, single confirmatory decision")
+
+
 if __name__ == "__main__":
     check_rosters()
     check_scores()
     check_baselines()
     check_matrix()
+    check_analysis()
