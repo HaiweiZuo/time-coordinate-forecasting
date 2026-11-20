@@ -178,3 +178,43 @@ compared.
 4. Fair CRPS repeats every statistic as a sensitivity analysis.
 5. If cells are missing at export, statistics use the available seeds, the
    missing cells are listed, and H2 is reported as undetermined.
+
+## 2026-11-21 (UTC+8), run complete
+
+### Completion record
+
+- Fits 160 of 160, scoring calls 240 of 240. Every checkpoint was scored once
+  per roster. No process returned a nonzero code and nothing was rerun.
+- Start 2026-11-20T07:46:07Z, end 2026-11-20T16:20:01Z, one GPU, two
+  processes at a time.
+- 159 fits stopped by patience. One fit reached the epoch limit:
+  `weather_jena2020__LL__conditional_diffusion__s2032`.
+- Code used for every fit and score: commit `fdca278`. Analysis code:
+  `confirmation/analyze.py` at commit `cad5858`, unchanged since.
+- Baselines and export ran on the same machine after the last fit, on CPU,
+  from the files written by the run. Nothing was rescored.
+- Result under the registered rule: H2 is not confirmed (7 of 10 seeds
+  positive). All results are in `confirmation_results/`.
+
+### N4. Notes on the delivered files
+
+1. Protocol section 8 lists four files. `confirmation_block_channel_sums.csv.gz`,
+   `baseline_block_scores.csv` and the two analysis outputs are additional.
+2. The `RUN_RECORD.json` in this repository omits the host name, the GPU
+   serial identifiers and the launch script of the machine. Hardware model,
+   software versions and every other field are the exported record unchanged.
+3. The analysis was run twice from the same CSV files: under Python 3.12.3
+   with NumPy 1.26.4 on the run machine, and under Python 3.11.9 with NumPy
+   2.2.6 on a second machine. All numbers are identical. The published files
+   are from the first run.
+4. Checkpoints and prediction samples are kept outside this repository.
+
+### D4. Part B is incomplete
+
+Part B of the protocol asks for source verification with commands and printed
+output. A static audit of the listed repositories at fixed commits was done
+without executing third-party code. The runtime prints of B1 (forward call
+with `x_mark=None`) and B2 (loader output) were not produced. B3 (the file and
+commit from which the study's `legacy` marks were derived) could not be
+established from the available records. The paper must not state these three
+items as verified.
