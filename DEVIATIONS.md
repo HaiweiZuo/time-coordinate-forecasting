@@ -75,3 +75,58 @@ These are not deviations. They settle points the protocol leaves open.
 10. Health check. Before the confirmation fits, one cell with an original
     seed may be fitted and scored on development data to check the software
     environment. It is not part of any analysis.
+
+## 2026-11-20, after data preparation and before the first confirmation fit
+
+### Pre-training report (section 4)
+
+1. Protocol file: commit `bfbd0a67f2db1b53c176ad3c2454b6d5b6d66b6d`, SHA-256
+   `d13cc6b35f126a16d919215a0929a8d1b1da0526550b182251bb17d399cf5243`. The branch
+   with the protocol, this record and the run code was published before the
+   first confirmation fit (GitHub branch creation 2026-11-20T07:18:09Z).
+2. Weather 2023 preconditions: (a) no earlier use in the project records, see
+   D1; (b) all 21 numeric headers of both 2023 archives equal the 2020
+   archives. Both pass, so 2023 is used.
+3. Realized rosters (counts only): USHCN test role 94 anchors (94 qualifying,
+   cap 128) in 80 source blocks, 376 windows; Weather 2023 67 anchors in 67
+   blocks, none excluded, 268 windows; Weather 2020 test role 100 anchors (223
+   qualifying, cap 100) in 14 blocks, 400 windows.
+
+The regenerated training and validation payloads of both datasets equal the
+original study payloads exactly, and the regenerated scalers equal the
+original scalers.
+
+### D2. Software and hardware differ from the original 48 fits
+
+The original fits used NVIDIA RTX 4090 D cards with Python 3.12.6, PyTorch
+2.4.1+cu124 and NumPy 1.26.4. The confirmation run uses one NVIDIA RTX PRO
+6000 Blackwell card with Python 3.12.3, PyTorch 2.8.0+cu128 and NumPy 1.26.4,
+because PyTorch 2.4.1 builds do not support this card. Two processes share
+the card. All 160 confirmation fits and all scoring calls use this one
+environment, so every paired contrast is within one environment. Results for
+seeds 2024-2026 come from the earlier environment and are reported
+separately, as registered.
+
+Health check on previously used data (N1, item 10), run before the first
+confirmation fit:
+
+- The Weather 2022 roster rebuilt with the confirmation code reproduces the
+  archived anchor digest, source-block digest, counts and lattice size.
+- The released checkpoint for Weather, SL, conditional diffusion, seed 2024,
+  rescored on Weather 2022: empirical CRPS 0.326359 against 0.327440 archived
+  (-0.33%), fair CRPS 0.321672 against 0.322752.
+- A new fit of the same cell with seed 2024 on development data: fit loss in
+  epochs 0-2 was 0.858199, 0.404313, 0.309031 against 0.857971, 0.405246,
+  0.309724 archived.
+
+The two environments therefore agree closely but not bit for bit.
+
+### N2. Source location of the 2023 archives
+
+The official download page now links the archives under
+`https://www.bgc-jena.mpg.de/wetter/data/`. The files were taken from there on
+2026-11-20: `mpi_roof_2023a.zip`, 1,279,553 bytes, SHA-256
+`83fc9b310df75b43248f80e602e2edc6876bc197b9f4fcae16fbe72cceff1518`;
+`mpi_roof_2023b.zip`, 1,303,267 bytes, SHA-256
+`316705ccf21a5daffdedbd477c273ce4f0b93404937da466d3e9443c3fafcaad`. Both sizes
+equal the header request of September 2026.
