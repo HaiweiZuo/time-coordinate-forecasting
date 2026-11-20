@@ -218,3 +218,43 @@ with `x_mark=None`) and B2 (loader output) were not produced. B3 (the file and
 commit from which the study's `legacy` marks were derived) could not be
 established from the available records. The paper must not state these three
 items as verified.
+
+## 2026-11-21 07:52 (UTC+8), second protocol frozen
+
+`CONFIRMATION_PROTOCOL_2.md` was committed alone as `2558c34`, SHA-256
+`b833989d69d97390c8f7eebb079b2dd60aaeef4aed021826ba56819dfedfcdbb`, and pushed
+before the 2024 archive was downloaded or opened and before any code of the
+second protocol was run on the compute machine.
+
+### N5. Notes fixed before the 2024 archive was downloaded
+
+1. Precondition (a). The project directory was searched on 2026-11-21 before
+   the protocol was written. It holds no file named after a 2024 Jena archive.
+   The only text that mentions the archive is a planning note of September
+   2026, which records a header request (status, size, date) and states that
+   nothing was downloaded or opened. The first protocol named 2024 as the
+   fallback year for 2023; the fallback was not used.
+2. Header requests on 2026-11-21: `mpi_roof_2024.zip`, 2,583,427 bytes, last
+   modified 2025-01-28, the same as in September 2026; `mpi_roof_2025.zip`,
+   2,586,119 bytes.
+3. Reader. The source publishes 2024 as one archive, and the reader of the
+   first run accepts only the two half-year file names. `read_archives` in
+   `confirmation2/prepare_data.py` repeats its row semantics for any ordered
+   list of archives of one year. `confirmation2/selftest.py` checks on
+   synthetic archives, and `confirmation2/validate.py` on the 2023 archives,
+   that both readers give the same record.
+4. Entry points. `confirmation2/fit.py` and `confirmation2/score.py` repeat
+   the steps of `confirmation/fit.py` and `confirmation/score.py` with the
+   constants of the second protocol. Training, the sampling loop
+   (`score_windows`) and the aggregation (`stratum_summary`) are imported
+   unchanged. Prediction samples are stored as in the first run.
+5. Analysis. `confirmation2/analyze.py` calls `analyse` and `arm_table` of
+   `confirmation/analyze.py` unchanged after replacing the registered seeds,
+   roster, family and labels, and writes the decision for H3. One set of
+   2,000 block resamples (`numpy.random.default_rng(20261120)`) is shared by
+   all contrasts. Fair CRPS repeats every statistic. If cells are missing at
+   export, H3 is reported as undetermined.
+6. Baselines. The climatology draws are the same 100 values per channel as in
+   the first run (same seed, same training payload).
+7. Execution. Same machine, same Python environment and same service limits
+   as the first run, two processes at a time on the one GPU.
