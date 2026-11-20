@@ -78,13 +78,13 @@ def _capped(payload, dataset: str, cap: int, arm: str):
     return SimpleNamespace(dev_score=dataset_windows, channels=int(records[0].values.shape[1]), proof=proof)
 
 
-def _temporal(payload, metadata, arm: str):
+def _temporal(payload, metadata, arm: str, record_id: str = TEMPORAL_RECORD_ID):
     settings = CONFIG["datasets"]["weather_jena2020"]
     require((settings["block_span"], settings["t_ref"], settings["history_point_missing"], settings["mask_seed"])
             == (792, 198, 0.5, 99173), "frozen Weather settings changed")
     modes = CONFIG["coordinate_arms"][arm]
     record = data._strict_record(payload)
-    require(record.record_id == TEMPORAL_RECORD_ID and record.values.shape[1] == 21, "temporal record identity/channel mismatch")
+    require(record.record_id == record_id and record.values.shape[1] == 21, "temporal record identity/channel mismatch")
     origin, values, mask = data._weather_lattice(record)
     require(origin == 0 and len(values) == metadata["lattice_rows"], "temporal lattice must start at index zero")
     specs = data._validate_registered_strata(settings["strata"], "weather_jena2020")
@@ -100,8 +100,8 @@ def _temporal(payload, metadata, arm: str):
             continue
         current = []
         for spec in specs:
-            e = data._sample_at_regular(values, mask, origin, start, TEMPORAL_RECORD_ID, spec, modes["embedding"], 792)
-            r = data._sample_at_regular(values, mask, origin, start, TEMPORAL_RECORD_ID, spec, modes["raster"], 792)
+            e = data._sample_at_regular(values, mask, origin, start, record_id, spec, modes["embedding"], 792)
+            r = data._sample_at_regular(values, mask, origin, start, record_id, spec, modes["raster"], 792)
             if e is None or r is None:
                 current = []
                 break
@@ -117,7 +117,7 @@ def _temporal(payload, metadata, arm: str):
     dataset_windows = data.WindowDataset(samples, [spec.name for spec in specs])
     proof = {
         "rule": "2022 temporal rule: one block-origin anchor per 792-index block, all four schedules or none, no cap",
-        "record_id": TEMPORAL_RECORD_ID,
+        "record_id": record_id,
         "qualifying_anchor_count": len(blocks),
         "realized_anchor_count": len(blocks),
         "partition_counts": {"score": dataset_windows.counts},

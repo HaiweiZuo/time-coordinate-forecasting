@@ -206,18 +206,18 @@ def read_year_archives(paths: list[Path], expected_columns: list[str], year: int
     return (f"weather:temporal{year}", torch.arange(size, dtype=torch.float32), torch.from_numpy(values_np), torch.from_numpy(mask_np)), metadata
 
 
-def prepare_weather_temporal(archives: list[Path], reference_archive: Path, original: Path) -> tuple[tuple, dict]:
+def prepare_weather_temporal(archives: list[Path], reference_archive: Path, original: Path, year: int = TEMPORAL_YEAR) -> tuple[tuple, dict]:
     expected = header_of(reference_archive)[1:]
     headers = [header_of(path)[1:] for path in archives]
-    require(all(header == expected for header in headers), f"{TEMPORAL_YEAR} numeric headers differ from the 2020 archives (precondition b)")
-    payload, metadata = read_year_archives(archives, expected, TEMPORAL_YEAR)
+    require(all(header == expected for header in headers), f"{year} numeric headers differ from the 2020 archives (precondition b)")
+    payload, metadata = read_year_archives(archives, expected, year)
     scaler_path = original / "weather" / "scaler.npz"
     require(sha256(scaler_path) == WEATHER_SCALER_SHA256, "original 2020 training scaler hash mismatch")
     scaler = load_scaler(scaler_path, 21)
     values, mask = scaler.transform(payload[2], payload[3])
     require(bool(torch.isfinite(values).all()), "nonfinite transformed values")
     metadata.update(scaler_sha256=WEATHER_SCALER_SHA256, scaler_refitted=False, header_matches_2020=True)
-    return isolated_record((TEMPORAL_RECORD_ID, payload[1], values, mask)), metadata
+    return isolated_record((f"weather:temporal{year}", payload[1], values, mask)), metadata
 
 
 def roster_report(name: str, payload, metadata=None) -> dict:
