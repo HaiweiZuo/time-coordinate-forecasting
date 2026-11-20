@@ -130,3 +130,24 @@ The official download page now links the archives under
 `mpi_roof_2023b.zip`, 1,303,267 bytes, SHA-256
 `316705ccf21a5daffdedbd477c273ce4f0b93404937da466d3e9443c3fafcaad`. Both sizes
 equal the header request of September 2026.
+
+## 2026-11-20 15:53 (UTC+8), fits running, no confirmation score yet
+
+### D3. H1 is reported as a secondary result; H2 is the only confirmatory hypothesis
+
+Because of D1, the authors decided to change the status of H1 (USHCN test
+role) from primary to secondary. The decision was taken while the first two
+of the 160 fits were still training. No fit had finished, no checkpoint had
+been scored on any confirmation roster, and no confirmation score existed.
+
+- H2 (Weather 2023, conditional diffusion, CRPS of SL below CRPS of LL) is
+  the single confirmatory hypothesis.
+- H1 is computed with the same statistics as registered and reported with
+  the secondary results, labelled descriptive, together with the history in
+  D1. No confirmatory claim is made from it.
+- The decision rule for H2 is unchanged: confirmed if the paired relative
+  effect is positive in at least 9 of the 10 seeds. The threshold is not
+  relaxed although only one primary hypothesis remains.
+- All 160 fits, all rosters, metrics, baselines and reporting commitments
+  stay as registered. USHCN results are reported in full whichever way they
+  fall.
