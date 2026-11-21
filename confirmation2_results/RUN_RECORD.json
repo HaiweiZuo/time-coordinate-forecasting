@@ -1,0 +1,519 @@
+{
+  "run": "confirmation2-20261121",
+  "code": {
+    "repository": "https://github.com/HaiweiZuo/time-coordinate-forecasting",
+    "branch": "confirmation-20261120",
+    "protocol_file": "CONFIRMATION_PROTOCOL_2.md",
+    "protocol_commit": "2558c344ae359a2fb91c9e33dc21f77f9190992b",
+    "release_v1_0_1_commit": "5d2efba",
+    "commit_used_for_all_fits_and_scores": "cb7fa70efc6fdd2543527bf6941061c82deef9ad",
+    "changes_against_v1_0_1": "files added only; no released file and no file of the first confirmation run modified"
+  },
+  "hardware": {
+    "single_machine": true,
+    "same_machine_as_first_run": true,
+    "cpu": "AMD Ryzen 9 9950X3D 16-Core Processor",
+    "logical_cpus": 32,
+    "memory_total": "123Gi",
+    "gpus_installed": [
+      {
+        "index": "0",
+        "name": "NVIDIA RTX PRO 6000 Blackwell Workstation Edition",
+        "memory_total": "97887 MiB",
+        "driver_version": "595.91.07"
+      },
+      {
+        "index": "1",
+        "name": "NVIDIA GeForce RTX 5090",
+        "memory_total": "32607 MiB",
+        "driver_version": "595.91.07"
+      }
+    ],
+    "gpu_used": {
+      "index": "0",
+      "name": "NVIDIA RTX PRO 6000 Blackwell Workstation Edition",
+      "memory_total": "97887 MiB",
+      "driver_version": "595.91.07"
+    },
+    "note": "All 40 fits and 40 scoring calls ran on the one GPU listed under gpu_used. The second GPU was in use by an unrelated resident service of the machine owner and was not used. Host name and GPU serial identifiers are omitted (repository publication rules)."
+  },
+  "software": {
+    "os": "Ubuntu 24.04 LTS",
+    "kernel": "7.0.0-38-generic",
+    "python": "3.12.3",
+    "torch": "2.8.0+cu128",
+    "torch_cuda": "12.8",
+    "cudnn": 91002,
+    "numpy": "1.26.4",
+    "pip_freeze": [
+      "filelock==4.2.12",
+      "fsspec==2026.9.0",
+      "Jinja2==3.1.6",
+      "MarkupSafe==3.0.4",
+      "mpmath==1.3.0",
+      "networkx==3.7",
+      "numpy==1.26.4",
+      "nvidia-cublas-cu12==12.8.4.1",
+      "nvidia-cuda-cupti-cu12==12.8.90",
+      "nvidia-cuda-nvrtc-cu12==12.8.93",
+      "nvidia-cuda-runtime-cu12==12.8.90",
+      "nvidia-cudnn-cu12==9.10.2.21",
+      "nvidia-cufft-cu12==11.3.3.83",
+      "nvidia-cufile-cu12==1.13.1.3",
+      "nvidia-curand-cu12==10.3.9.90",
+      "nvidia-cusolver-cu12==11.7.3.90",
+      "nvidia-cusparse-cu12==12.5.8.93",
+      "nvidia-cusparselt-cu12==0.7.1",
+      "nvidia-nccl-cu12==2.27.3",
+      "nvidia-nvjitlink-cu12==12.8.93",
+      "nvidia-nvtx-cu12==12.8.90",
+      "setuptools==84.2.1",
+      "sympy==1.14.0",
+      "torch==2.8.0",
+      "triton==3.4.0",
+      "typing_extensions==4.16.0"
+    ]
+  },
+  "execution": {
+    "orchestrator": "confirmation2/orchestrate.py as a systemd user service",
+    "concurrency": 2,
+    "service_limits": "MemoryMax=5G MemorySwapMax=0 OOMScoreAdjust=1000 OOMPolicy=continue Nice=5",
+    "min_available_memory_gb_before_starting_a_process": 2.5,
+    "started_utc": "2026-11-20T23:55:10Z",
+    "finished_utc": "2026-11-21T00:50:55Z",
+    "wall_clock_hours": 0.93,
+    "orchestrator_starts": 1,
+    "fit_processes": 40,
+    "score_processes": 40,
+    "fit_seconds_total": 5957.0,
+    "score_seconds_total": 715.7,
+    "nonzero_return_codes": 0,
+    "scoring_calls_per_checkpoint": 1
+  },
+  "reader_check_on_weather_2023": {
+    "new_reader_on_the_two_archives_equals_first_reader": true,
+    "single_merged_archive_equals_two_archives": true,
+    "metadata_counts_equal": true,
+    "raw_rows_equal": true,
+    "scaled_payload_equals_first_run_payload_bitwise": true,
+    "first_run_payload_sha256": "52d9fb3a39e04494514a6026b2cdc0fdc6e18be21abf0783a1d2b98f422993af",
+    "lattice_rows": 52560
+  },
+  "deviations": "DEVIATIONS.md at the branch head: N5 (notes fixed before the 2024 archive was downloaded) and the pre-training report of the second protocol.",
+  "protocol_sha256": "b833989d69d97390c8f7eebb079b2dd60aaeef4aed021826ba56819dfedfcdbb",
+  "preparation": {
+    "protocol_sha256": "b833989d69d97390c8f7eebb079b2dd60aaeef4aed021826ba56819dfedfcdbb",
+    "scope": "confirmation payload; values were not printed, plotted or summarised",
+    "weather2024": {
+      "archives": [
+        {
+          "name": "mpi_roof_2024.zip",
+          "sha256": "3ce424b9d1671ebc26c09921c7d4f9444282acb1e8a5f020d90a156287ba83aa",
+          "bytes": 2583427,
+          "raw_rows": 52704,
+          "first_timestamp": "2024-01-01T00:10:00",
+          "last_timestamp": "2025-01-01T00:00:00"
+        }
+      ],
+      "first_timestamp": "2024-01-01T00:10:00",
+      "last_timestamp": "2025-01-01T00:00:00",
+      "lattice_rows": 52704,
+      "raw_rows": 52704,
+      "duplicate_extra_rows": 0,
+      "absent_timestamp_rows": 0,
+      "header_matches_2020": true,
+      "scaler_refitted": false
+    },
+    "rosters": {
+      "weather2024": {
+        "rule": "2022 temporal rule: one block-origin anchor per 792-index block, all four schedules or none, no cap",
+        "record_id": "weather:temporal2024",
+        "qualifying_anchor_count": 67,
+        "realized_anchor_count": 67,
+        "partition_counts": {
+          "score": {
+            "step1_gap0": 67,
+            "step1_gap18": 67,
+            "step2_gap0": 67,
+            "step2_gap18": 67
+          }
+        },
+        "anonymous_roster_digest": {
+          "score": "7b7e0a8ac0b8df00f6d91a296e364e830645ca3803862870bc2f47177cd96a21"
+        },
+        "source_block_digest": {
+          "score": "809d88a4be4bba85953482a2052ce6e4203b077efe410be1b5e2c6842715780a"
+        },
+        "source_block_count": {
+          "score": 67
+        },
+        "excluded_block_count": 0,
+        "calendar_month_block_counts": {
+          "2024-01": 6,
+          "2024-02": 5,
+          "2024-03": 6,
+          "2024-04": 5,
+          "2024-05": 6,
+          "2024-06": 6,
+          "2024-07": 5,
+          "2024-08": 6,
+          "2024-09": 5,
+          "2024-10": 6,
+          "2024-11": 5,
+          "2024-12": 6
+        },
+        "fixed_tensor_shapes": {
+          "history_points": 72,
+          "horizon_points": 18
+        },
+        "scaler_refitted": false,
+        "replacement_anchor_searched": false,
+        "excluded_block_reasons": {},
+        "windows": 268
+      }
+    },
+    "files": {
+      "weather2024.pt": "f515c058b28e55275ac2ec150bfbbe50955c2b2056b23dad7acc5828e1d6d77d",
+      "weather2024_metadata.json": "8a695f5717823249cd68dada60399dd0382c3e655365180d0bc97cda894a7a62"
+    },
+    "runtime": {
+      "python": "3.12.3",
+      "numpy": "1.26.4",
+      "torch": "2.8.0+cu128"
+    },
+    "metadata_counts": {
+      "unique_timestamps": 52704,
+      "sentinel_entries_before_averaging": 23,
+      "missing_entries_after_lattice": 23,
+      "off_lattice_unique_timestamps": 0
+    }
+  },
+  "fits_completed": 40,
+  "fits_registered": 40,
+  "missing": [],
+  "fits": [
+    {
+      "cell": "weather_jena2020__LL__direct_gaussian__s2037",
+      "epochs_run": 23,
+      "selected_epoch": 7,
+      "stop_reason": "patience",
+      "checkpoint_sha256": "174c282c5e32bdfaf6729d7ac426738df52b3e3ee794f9983734cf86adcb39ea",
+      "elapsed_seconds": 151.62094044685364
+    },
+    {
+      "cell": "weather_jena2020__LL__direct_gaussian__s2038",
+      "epochs_run": 24,
+      "selected_epoch": 8,
+      "stop_reason": "patience",
+      "checkpoint_sha256": "6187a5108e51b3dd3de3800f19a39bd8482cbd688241ae87adda98bfe45f6e8a",
+      "elapsed_seconds": 146.2013545036316
+    },
+    {
+      "cell": "weather_jena2020__LL__direct_gaussian__s2039",
+      "epochs_run": 19,
+      "selected_epoch": 3,
+      "stop_reason": "patience",
+      "checkpoint_sha256": "1d044cd38f324343bc4e806fead09977c401ad3eb58c1f9f550d599c44b59a48",
+      "elapsed_seconds": 112.27348637580872
+    },
+    {
+      "cell": "weather_jena2020__LL__direct_gaussian__s2040",
+      "epochs_run": 20,
+      "selected_epoch": 4,
+      "stop_reason": "patience",
+      "checkpoint_sha256": "e85634cb090c283b5e1d07a9c9821d09ba13aa1430c2f88d292a03a4c485dd0d",
+      "elapsed_seconds": 118.44813299179077
+    },
+    {
+      "cell": "weather_jena2020__LL__direct_gaussian__s2041",
+      "epochs_run": 19,
+      "selected_epoch": 3,
+      "stop_reason": "patience",
+      "checkpoint_sha256": "2623a8091478fead44364106d0948c72c801ac6a69313f29b4380245e2cef8a2",
+      "elapsed_seconds": 97.00078392028809
+    },
+    {
+      "cell": "weather_jena2020__LL__direct_gaussian__s2042",
+      "epochs_run": 19,
+      "selected_epoch": 3,
+      "stop_reason": "patience",
+      "checkpoint_sha256": "0f4aa6c5ee58f4afd8440fce82e5da5ab5c96d20f11c622516e172a712d3c3e7",
+      "elapsed_seconds": 137.63842153549194
+    },
+    {
+      "cell": "weather_jena2020__LL__direct_gaussian__s2043",
+      "epochs_run": 21,
+      "selected_epoch": 5,
+      "stop_reason": "patience",
+      "checkpoint_sha256": "3fd25a684ad6350b393a15d3e97032514a232d2683e0de06dbdaf40107854f41",
+      "elapsed_seconds": 144.5676553249359
+    },
+    {
+      "cell": "weather_jena2020__LL__direct_gaussian__s2044",
+      "epochs_run": 20,
+      "selected_epoch": 4,
+      "stop_reason": "patience",
+      "checkpoint_sha256": "d511c1c70423bc8dcc420d255895c963a18fe588e9ca253ace732b40b9a36685",
+      "elapsed_seconds": 133.68371653556824
+    },
+    {
+      "cell": "weather_jena2020__LL__direct_gaussian__s2045",
+      "epochs_run": 21,
+      "selected_epoch": 5,
+      "stop_reason": "patience",
+      "checkpoint_sha256": "27eb4b476261fd237058fe87e29dbc430d8920f77a5ae2e13d38e84fed1b7884",
+      "elapsed_seconds": 144.31927967071533
+    },
+    {
+      "cell": "weather_jena2020__LL__direct_gaussian__s2046",
+      "epochs_run": 21,
+      "selected_epoch": 5,
+      "stop_reason": "patience",
+      "checkpoint_sha256": "198dfcb6540f85ff4840726d7db481181502a679ba90bfdf2164827ec34252a2",
+      "elapsed_seconds": 146.53259444236755
+    },
+    {
+      "cell": "weather_jena2020__SL__direct_gaussian__s2037",
+      "epochs_run": 23,
+      "selected_epoch": 7,
+      "stop_reason": "patience",
+      "checkpoint_sha256": "ce436d782b53b56095c6caa766e5975867c530c61c31fa8c177fb6d2938f2c3f",
+      "elapsed_seconds": 152.2703287601471
+    },
+    {
+      "cell": "weather_jena2020__SL__direct_gaussian__s2038",
+      "epochs_run": 23,
+      "selected_epoch": 7,
+      "stop_reason": "patience",
+      "checkpoint_sha256": "3c79b6f574f2991633482deaddda991890f04842a84851ed3d13ec3bfb1a58d8",
+      "elapsed_seconds": 149.4029037952423
+    },
+    {
+      "cell": "weather_jena2020__SL__direct_gaussian__s2039",
+      "epochs_run": 22,
+      "selected_epoch": 6,
+      "stop_reason": "patience",
+      "checkpoint_sha256": "4fd584aec657d35f6787918e7a8f3683155fc889bbc9c7cd305977a6f6d4aa92",
+      "elapsed_seconds": 144.66205286979675
+    },
+    {
+      "cell": "weather_jena2020__SL__direct_gaussian__s2040",
+      "epochs_run": 20,
+      "selected_epoch": 4,
+      "stop_reason": "patience",
+      "checkpoint_sha256": "77bea3f52d5cfc9cf1a72e8c9f90e4265a44c819fd5993e98a48db898821c090",
+      "elapsed_seconds": 127.86535716056824
+    },
+    {
+      "cell": "weather_jena2020__SL__direct_gaussian__s2041",
+      "epochs_run": 21,
+      "selected_epoch": 5,
+      "stop_reason": "patience",
+      "checkpoint_sha256": "43b8d8789d121909dd4e9e7b639e6f96493e490c7b2b56a0470aee976b056419",
+      "elapsed_seconds": 144.02124691009521
+    },
+    {
+      "cell": "weather_jena2020__SL__direct_gaussian__s2042",
+      "epochs_run": 23,
+      "selected_epoch": 7,
+      "stop_reason": "patience",
+      "checkpoint_sha256": "8c46ca974f7c8600e9767ba7a1deea76eb2589c82d015d87f9584316ccce909e",
+      "elapsed_seconds": 150.6911017894745
+    },
+    {
+      "cell": "weather_jena2020__SL__direct_gaussian__s2043",
+      "epochs_run": 21,
+      "selected_epoch": 5,
+      "stop_reason": "patience",
+      "checkpoint_sha256": "17d89d53b8c534ab3200d8b3c822770e12d39cc63d3c3b7d5a0dcce9f8785998",
+      "elapsed_seconds": 136.9351863861084
+    },
+    {
+      "cell": "weather_jena2020__SL__direct_gaussian__s2044",
+      "epochs_run": 23,
+      "selected_epoch": 7,
+      "stop_reason": "patience",
+      "checkpoint_sha256": "93bca36fb4d0210b494a0101da01344fb8f6f3ce94f08d0f4550b41ac1dc50a8",
+      "elapsed_seconds": 150.420476436615
+    },
+    {
+      "cell": "weather_jena2020__SL__direct_gaussian__s2045",
+      "epochs_run": 20,
+      "selected_epoch": 4,
+      "stop_reason": "patience",
+      "checkpoint_sha256": "0e523f2e35cd560e82ab2064e78f6d8437dca3bb911ca5fd8f3e10c22a50533d",
+      "elapsed_seconds": 143.32899928092957
+    },
+    {
+      "cell": "weather_jena2020__SL__direct_gaussian__s2046",
+      "epochs_run": 21,
+      "selected_epoch": 5,
+      "stop_reason": "patience",
+      "checkpoint_sha256": "198ad7eef38e524c78d5a437ddeff5acc0e1e7bc9979336f037fe04103ee80c5",
+      "elapsed_seconds": 151.91449332237244
+    },
+    {
+      "cell": "weather_jena2020__LS__direct_gaussian__s2037",
+      "epochs_run": 23,
+      "selected_epoch": 7,
+      "stop_reason": "patience",
+      "checkpoint_sha256": "fb51e24de60ace3a3a8ef2b1eda119583345b5d8b88fa3335825011f8905f6b9",
+      "elapsed_seconds": 158.24751210212708
+    },
+    {
+      "cell": "weather_jena2020__LS__direct_gaussian__s2038",
+      "epochs_run": 20,
+      "selected_epoch": 4,
+      "stop_reason": "patience",
+      "checkpoint_sha256": "7e29fdadde8d8d578ce57fcd89b9bd4b9d2cc43bcd59a4b5fda16d43372f6e89",
+      "elapsed_seconds": 141.38125705718994
+    },
+    {
+      "cell": "weather_jena2020__LS__direct_gaussian__s2039",
+      "epochs_run": 28,
+      "selected_epoch": 12,
+      "stop_reason": "patience",
+      "checkpoint_sha256": "c4916499952086cf1519ba6ecdb9f6dd92c2677427694b630372937635287c8c",
+      "elapsed_seconds": 173.25264167785645
+    },
+    {
+      "cell": "weather_jena2020__LS__direct_gaussian__s2040",
+      "epochs_run": 24,
+      "selected_epoch": 8,
+      "stop_reason": "patience",
+      "checkpoint_sha256": "212bbd2325530a27e418fcc55e0e77b54cde855be5681581ee8ce41014e34c60",
+      "elapsed_seconds": 139.62749767303467
+    },
+    {
+      "cell": "weather_jena2020__LS__direct_gaussian__s2041",
+      "epochs_run": 24,
+      "selected_epoch": 8,
+      "stop_reason": "patience",
+      "checkpoint_sha256": "4becb5655af59f6dc447c07f8b299ffcf836cf96e69d39263f26b8fbd6608035",
+      "elapsed_seconds": 138.42572259902954
+    },
+    {
+      "cell": "weather_jena2020__LS__direct_gaussian__s2042",
+      "epochs_run": 24,
+      "selected_epoch": 8,
+      "stop_reason": "patience",
+      "checkpoint_sha256": "0d7c67ab751746942c48b70a1c47c22f0728ff7ec34141856654749957ecf3df",
+      "elapsed_seconds": 141.2669975757599
+    },
+    {
+      "cell": "weather_jena2020__LS__direct_gaussian__s2043",
+      "epochs_run": 23,
+      "selected_epoch": 7,
+      "stop_reason": "patience",
+      "checkpoint_sha256": "71185457b6479c963c56b3643791db7d23d13bc28e2acb3cc35d1529f569326c",
+      "elapsed_seconds": 103.51587128639221
+    },
+    {
+      "cell": "weather_jena2020__LS__direct_gaussian__s2044",
+      "epochs_run": 23,
+      "selected_epoch": 7,
+      "stop_reason": "patience",
+      "checkpoint_sha256": "34174e600fe4f14a4d7bcad8198d5c62ae4a28fcf8a5a1786b318a499da71e01",
+      "elapsed_seconds": 134.54676413536072
+    },
+    {
+      "cell": "weather_jena2020__LS__direct_gaussian__s2045",
+      "epochs_run": 21,
+      "selected_epoch": 5,
+      "stop_reason": "patience",
+      "checkpoint_sha256": "b8a05a80ffad5716831fcb6b1cc871ebe942a43b23fe858246292da553287c64",
+      "elapsed_seconds": 121.53804183006287
+    },
+    {
+      "cell": "weather_jena2020__LS__direct_gaussian__s2046",
+      "epochs_run": 19,
+      "selected_epoch": 3,
+      "stop_reason": "patience",
+      "checkpoint_sha256": "f3fd0f808df5de3e0cb2fb93270aacac540f6b0a861b394ad47053901707e3c4",
+      "elapsed_seconds": 135.38463354110718
+    },
+    {
+      "cell": "weather_jena2020__SS__direct_gaussian__s2037",
+      "epochs_run": 23,
+      "selected_epoch": 7,
+      "stop_reason": "patience",
+      "checkpoint_sha256": "d7a613e1f438e0a62053533a56bd2a50e2e995d7646329928a76fa45237a2e49",
+      "elapsed_seconds": 150.49198698997498
+    },
+    {
+      "cell": "weather_jena2020__SS__direct_gaussian__s2038",
+      "epochs_run": 23,
+      "selected_epoch": 7,
+      "stop_reason": "patience",
+      "checkpoint_sha256": "662f048dad2b6709ff9408782e71c08e87da99bfb69afdffeee41b936f3950c1",
+      "elapsed_seconds": 158.00941443443298
+    },
+    {
+      "cell": "weather_jena2020__SS__direct_gaussian__s2039",
+      "epochs_run": 22,
+      "selected_epoch": 6,
+      "stop_reason": "patience",
+      "checkpoint_sha256": "86f6b37336e86f87386db8b69582cbc5f6a824df651dd9885a20223908ba8119",
+      "elapsed_seconds": 133.42217540740967
+    },
+    {
+      "cell": "weather_jena2020__SS__direct_gaussian__s2040",
+      "epochs_run": 23,
+      "selected_epoch": 7,
+      "stop_reason": "patience",
+      "checkpoint_sha256": "dd4c3458cd3ce6fc397b05c3ddb60168c99232b340bf763b139fbbeb27acf7bd",
+      "elapsed_seconds": 135.28506517410278
+    },
+    {
+      "cell": "weather_jena2020__SS__direct_gaussian__s2041",
+      "epochs_run": 24,
+      "selected_epoch": 8,
+      "stop_reason": "patience",
+      "checkpoint_sha256": "1e56e7912ed2cd7e46fb19e49d2bac16fb865f84cfed2b28fbcfe1f3cf27104f",
+      "elapsed_seconds": 123.0024344921112
+    },
+    {
+      "cell": "weather_jena2020__SS__direct_gaussian__s2042",
+      "epochs_run": 22,
+      "selected_epoch": 6,
+      "stop_reason": "patience",
+      "checkpoint_sha256": "d94abe4ae1618e1efebae7213e80edc08002652bc5468a75b47dddc75a18793f",
+      "elapsed_seconds": 85.95624351501465
+    },
+    {
+      "cell": "weather_jena2020__SS__direct_gaussian__s2043",
+      "epochs_run": 24,
+      "selected_epoch": 8,
+      "stop_reason": "patience",
+      "checkpoint_sha256": "4d4c866d650e5a392fa77b9c7ff4194c9b71c01b1c420a5bd37d6e01d1753512",
+      "elapsed_seconds": 124.53925204277039
+    },
+    {
+      "cell": "weather_jena2020__SS__direct_gaussian__s2044",
+      "epochs_run": 24,
+      "selected_epoch": 8,
+      "stop_reason": "patience",
+      "checkpoint_sha256": "f992c725e7abb03c9ddbad4c5f54a58756b08390433000ee5494318d3e058520",
+      "elapsed_seconds": 119.23617649078369
+    },
+    {
+      "cell": "weather_jena2020__SS__direct_gaussian__s2045",
+      "epochs_run": 21,
+      "selected_epoch": 5,
+      "stop_reason": "patience",
+      "checkpoint_sha256": "c7d0ecfb9b00dfff09b316401c5d7978850f41a53afffd4d57ee59660dacea83",
+      "elapsed_seconds": 121.00360441207886
+    },
+    {
+      "cell": "weather_jena2020__SS__direct_gaussian__s2046",
+      "epochs_run": 21,
+      "selected_epoch": 5,
+      "stop_reason": "patience",
+      "checkpoint_sha256": "bb8ac9252e395fc327f971536379d77a6d1d5ecc39555225344b9f4cd8b04b73",
+      "elapsed_seconds": 141.53355240821838
+    }
+  ],
+  "reruns": [],
+  "first_event_unix": 1795218910.109423,
+  "last_event_unix": 1795222255.3186035
+}

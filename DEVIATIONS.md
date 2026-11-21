@@ -285,3 +285,22 @@ second protocol was run on the compute machine.
 
 No value of a 2024 record was printed, plotted or summarised. Nothing failed,
 so the fits start.
+
+## 2026-11-21 08:51 (UTC+8), second protocol complete
+
+### Completion record (second protocol)
+
+- Fits 40 of 40, scoring calls 40 of 40. Every checkpoint was scored once, on
+  the Weather 2024 roster only. No process returned a nonzero code and nothing
+  was rerun. No checkpoint of an earlier run was scored on 2024 data.
+- Start 2026-11-20T23:55:10Z, end 2026-11-21T00:50:55Z, same machine and
+  environment as the first run, one GPU, two processes at a time.
+- All 40 fits stopped by patience; selected epochs 3 to 12.
+- Code used for every fit, score, baseline, export and analysis: commit
+  `cb7fa70`, deployed before the 2024 archive was opened.
+- Result under the registered rule: H3 is confirmed (10 of 10 seeds
+  positive). All results are in `confirmation2_results/`.
+- The analysis was run under Python 3.12.3 with NumPy 1.26.4 on the run
+  machine and under Python 3.11.9 with NumPy 2.2.6 on a second machine. The
+  output files are byte-identical.
+- No deviation from `CONFIRMATION_PROTOCOL_2.md` occurred.
